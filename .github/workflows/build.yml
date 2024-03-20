@@ -29,6 +29,13 @@ jobs:
         with:
           event-type: build-linux-flavors
 
+      - name: Archive linux artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: |
+            ${{ github.workspace }}/build
+
   build-and-test-windows:
     #if: false  # Temporarily disable
     name: Build And Test Windows
@@ -87,4 +94,11 @@ jobs:
         #run: test_connection.exe suite-quick  # Loopback throughput test not performing on github hosted runners for some reason
         run: test_connection.exe identity quick lane_quick_queueanddrain lane_quick_priority_and_background
         shell: cmd
+
+      - name: Archive windows artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build
+          path: |
+            ${{ github.workspace }}/build
 
